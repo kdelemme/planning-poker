@@ -1,0 +1,16 @@
+[ignore]
+.*/node_modules/.*
+.*/\.cache/.*
+.*/\.circleci/.*
+.*/dist/.*
+
+[include]
+./src/**/*.js
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
