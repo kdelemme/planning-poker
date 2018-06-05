@@ -1,39 +1,37 @@
 import openSocket from "socket.io-client";
-const socket = openSocket("http://localhost:3000", {
-  query: {
-    roomId: "39944e90-c9f5-427e-a616-98c3f91b08bb"
+
+class EventsService {
+  constructor(roomId) {
+    this.socket = openSocket("http://localhost:3000", {
+      query: {
+        roomId
+      }
+    });
   }
-});
 
-const subscribeToParticipantListEvent = callback => {
-  socket.on("PARTICIPANT_LIST", data => callback(data));
-};
+  subscribeToParticipantListEvent = callback => {
+    this.socket.on("PARTICIPANT_LIST", data => callback(data));
+  };
 
-const subscribeToEstimationsResultEvent = callback => {
-  socket.on("ESTIMATIONS_RESULT", data => callback(data));
-};
+  subscribeToEstimationsResultEvent = callback => {
+    this.socket.on("ESTIMATIONS_RESULT", data => callback(data));
+  };
 
-const subscribeToEstimationStartedEvent = callback => {
-  socket.on("ESTIMATION_STARTED", () => callback());
-};
+  subscribeToEstimationStartedEvent = callback => {
+    this.socket.on("ESTIMATION_STARTED", () => callback());
+  };
 
-const publishStartEstimationEvent = () => {
-  socket.emit("START_ESTIMATION");
-};
+  publishStartEstimationEvent = () => {
+    this.socket.emit("START_ESTIMATION");
+  };
 
-const publishPlayCardEvent = value => {
-  socket.emit("PLAY_CARD", { value });
-};
+  publishPlayCardEvent = value => {
+    this.socket.emit("PLAY_CARD", { value });
+  };
 
-const publishChangeNameEvent = name => {
-  socket.emit("CHANGE_NAME", { name });
-};
+  publishChangeNameEvent = name => {
+    this.socket.emit("CHANGE_NAME", { name });
+  };
+}
 
-export {
-  subscribeToEstimationsResultEvent,
-  subscribeToEstimationStartedEvent,
-  subscribeToParticipantListEvent,
-  publishChangeNameEvent,
-  publishPlayCardEvent,
-  publishStartEstimationEvent
-};
+export default EventsService;
