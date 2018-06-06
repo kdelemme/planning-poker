@@ -30,6 +30,28 @@ class App extends Component {
     this.eventsService.subscribeToParticipantListEvent(participants => {
       this.setState({ participants });
     });
+
+    this.eventsService.subscribeToCardPlayedEvent(({ participantId }) => {
+      const index = this.state.participants.findIndex(p => p.id === participantId);
+      this.setState({
+        participants: [
+          ...this.state.participants.slice(0, index),
+          Object.assign({}, this.state.participants[index], { hasVoted: true }),
+          ...this.state.participants.slice(index + 1)
+        ]
+      });
+    });
+
+    this.eventsService.subscribeToNameChangedEvent(participant => {
+      const index = this.state.participants.findIndex(p => p.id === participant.id);
+      this.setState({
+        participants: [
+          ...this.state.participants.slice(0, index),
+          Object.assign({}, this.state.participants[index], { name: participant.name }),
+          ...this.state.participants.slice(index + 1)
+        ]
+      });
+    });
   }
 
   render() {

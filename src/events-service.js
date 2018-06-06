@@ -21,6 +21,14 @@ class EventsService {
     this.socket.on("ESTIMATION_STARTED", () => callback());
   };
 
+  subscribeToCardPlayedEvent = callback => {
+    this.socket.on("CARD_PLAYED", data => callback(data));
+  };
+
+  subscribeToNameChangedEvent = callback => {
+    this.socket.on("NAME_CHANGED", data => callback(data));
+  };
+
   publishStartEstimationEvent = () => {
     this.socket.emit("START_ESTIMATION");
   };
