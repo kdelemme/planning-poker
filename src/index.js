@@ -24,7 +24,11 @@ class App extends Component {
     });
 
     this.eventsService.subscribeToEstimationStartedEvent(() => {
-      this.setState({ estimations: [], hasStarted: true });
+      this.setState({
+        participants: this.state.participants.map(p => Object.assign({}, p, { hasVoted: false })),
+        estimations: [],
+        hasStarted: true
+      });
     });
 
     this.eventsService.subscribeToParticipantListEvent(participants => {
@@ -55,20 +59,21 @@ class App extends Component {
   }
 
   render() {
+    const { participants, estimations, hasStarted } = this.state;
     return (
       <div className="container">
         <div className="row mt-5">
           <Name handleChange={this.eventsService.publishChangeNameEvent} />
-          <Participants participants={this.state.participants} />
+          <Participants participants={participants} />
           <StartEstimation
             handleStartEstimation={this.eventsService.publishStartEstimationEvent}
-            showButton={!this.state.hasStarted}
+            showButton={!hasStarted}
           />
-          <Cards showCards={this.state.hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
+          <Cards showCards={hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
           <Estimations
-            showResults={!this.state.hasStarted && this.state.estimations.length > 0}
-            participants={this.state.participants}
-            estimations={this.state.estimations}
+            showResults={!hasStarted && estimations.length > 0}
+            participants={participants}
+            estimations={estimations}
           />
         </div>
       </div>
