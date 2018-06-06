@@ -15,11 +15,9 @@ class Name extends Component {
     return (
       <form onSubmit={this.handleSubmit} className="col-12">
         <div className="form-group">
-          <label for="name">Name</label>
           <input
             type="text"
             class="form-control"
-            id="name"
             placeholder="Your name"
             value={this.state.name}
             onChange={this.handleChange}

@@ -13,7 +13,7 @@ class Cards extends Component {
       return null;
     }
 
-    const cardValues = [1, 2, 3, 5, 8, 11];
+    const cardValues = [1, 2, 3, 5, 8, 13, 21];
     const boundedSelectCards = cardValues.map(card => this.selectCard.bind(this, card));
 
     return (

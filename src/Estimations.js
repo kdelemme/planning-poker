@@ -12,13 +12,13 @@ class Estimations extends Component {
 
     return (
       <div className="col-12">
-        Results:
         <ul className="list list-unstyled">
           {this.props.estimations.map(estimation => {
             let p = this.props.participants.find(participant => participant.id === estimation.participantId);
             return (
               <li>
-                {p.name}: {estimation.estimation}
+                <span className="text-success">{p.name}</span> played the card{" "}
+                <span className="text-success">{estimation.estimation}</span>
               </li>
             );
           })}

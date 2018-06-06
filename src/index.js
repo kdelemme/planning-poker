@@ -62,19 +62,23 @@ class App extends Component {
     const { participants, estimations, hasStarted } = this.state;
     return (
       <div className="container">
-        <div className="row mt-5">
-          <Name handleChange={this.eventsService.publishChangeNameEvent} />
-          <Participants participants={participants} />
-          <StartEstimation
-            handleStartEstimation={this.eventsService.publishStartEstimationEvent}
-            showButton={!hasStarted}
-          />
-          <Cards showCards={hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
-          <Estimations
-            showResults={!hasStarted && estimations.length > 0}
-            participants={participants}
-            estimations={estimations}
-          />
+        <div className="row mt-3">
+          <div className="col-12 col-md-3">
+            <Name handleChange={this.eventsService.publishChangeNameEvent} />
+            <Participants participants={participants} />
+          </div>
+          <div className="col-12 col-md-9">
+            <StartEstimation
+              handleStartEstimation={this.eventsService.publishStartEstimationEvent}
+              showButton={!hasStarted}
+            />
+            <Cards showCards={hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
+            <Estimations
+              showResults={!hasStarted && estimations.length > 0}
+              participants={participants}
+              estimations={estimations}
+            />
+          </div>
         </div>
       </div>
     );
