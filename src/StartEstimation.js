@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class StartEstimation extends Component {
   startEstimation = () => {
-    this.props.publishStartEstimationEvent();
+    this.props.handleStartEstimation();
   };
 
   render() {

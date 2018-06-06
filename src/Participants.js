@@ -5,7 +5,9 @@ class Participants extends Component {
     return (
       <div className="col-12">
         Participants:
-        <ul className="list list-unstyled">{this.props.participants.map(p => <li>{p.name}</li>)}</ul>
+        <ul className="list-inline">
+          {this.props.participants.map(p => <li className="list-inline-item">{p.name}</li>)}
+        </ul>
       </div>
     );
   }

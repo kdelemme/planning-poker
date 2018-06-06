@@ -36,13 +36,13 @@ class App extends Component {
     return (
       <div className="container">
         <div className="row mt-5">
-          <Name publishChangeNameEvent={this.eventsService.publishChangeNameEvent} />
+          <Name handleChange={this.eventsService.publishChangeNameEvent} />
           <Participants participants={this.state.participants} />
           <StartEstimation
-            publishStartEstimationEvent={this.eventsService.publishStartEstimationEvent}
+            handleStartEstimation={this.eventsService.publishStartEstimationEvent}
             showButton={!this.state.hasStarted}
           />
-          <Cards showCards={this.state.hasStarted} publishPlayCardEvent={this.eventsService.publishPlayCardEvent} />
+          <Cards showCards={this.state.hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
           <Estimations
             showResults={!this.state.hasStarted && this.state.estimations.length > 0}
             participants={this.state.participants}

@@ -8,15 +8,23 @@ class Name extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.publishChangeNameEvent(this.state.name);
+    this.props.handleChange(this.state.name);
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="col-12">
-        <label>
-          Your name: <input type="text" value={this.state.name} onChange={this.handleChange} />
-        </label>
+        <div className="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Your name"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </div>
       </form>
     );
   }

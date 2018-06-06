@@ -4,7 +4,7 @@ class Cards extends Component {
   state = { selectedCard: undefined };
 
   selectCard = card => {
-    this.props.publishPlayCardEvent(card);
+    this.props.handlePlayCard(card);
     this.setState({ selectedCard: card });
   };
 
