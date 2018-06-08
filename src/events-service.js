@@ -1,7 +1,7 @@
 import openSocket from "socket.io-client";
 
 class EventsService {
-  constructor(roomId, participantName) {
+  constructor(roomId, name) {
     this.socket = openSocket("http://localhost:3000", {
       query: {
         roomId,

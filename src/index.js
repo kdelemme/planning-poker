@@ -6,6 +6,7 @@ import Estimations from "./Estimations";
 import Participants from "./Participants";
 import Cards from "./Cards";
 import StartEstimation from "./StartEstimation";
+import Input from "./Input";
 
 class PlanningPokerRoom extends Component {
   state = {
@@ -64,12 +65,12 @@ class PlanningPokerRoom extends Component {
         <div className="row mt-3">
           <div className="col-12 col-sm-3">
             <Participants participants={participants} />
-          </div>
-          <div className="col-12 col-sm-9">
             <StartEstimation
               handleStartEstimation={this.eventsService.publishStartEstimationEvent}
               showButton={this.isAdmin() && !hasStarted}
             />
+          </div>
+          <div className="col-12 col-sm-9">
             <Cards showCards={hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
             <Estimations
               showResults={!hasStarted && estimations.length > 0}
@@ -85,17 +86,48 @@ class PlanningPokerRoom extends Component {
 
 class Landing extends Component {
   state = {};
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.handleSubmit(this.state);
+  };
+
+  handleNameChange = value => this.setState({ name: value });
+  handleRoomIdChange = value => this.setState({ roomId: value });
+
+  render() {
+    const { name, roomId } = this.state;
+    return (
+      <div className="container">
+        <div className="row mt-3">
+          <div className="col-12 col-sm-3">
+            <form>
+              <Input placeholder="Your name" handleChange={this.handleNameChange} />
+              <Input placeholder="Room ID" handleChange={this.handleRoomIdChange} />
+              <button disabled={!name || !roomId} className="btn btn-primary" type="submit" onClick={this.handleSubmit}>
+                Join the planning poker room
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 class App extends Component {
-  state = {
-    roomId: "2345",
-    name: "John"
-  };
+  state = {};
+
+  handleSubmit = ({ name, roomId }) => this.setState({ name, roomId });
 
   render() {
     const { roomId, name } = this.state;
-    return roomId && name && <PlanningPokerRoom {...this.state} />;
+    return (
+      <div>
+        {!roomId && !name && <Landing handleSubmit={this.handleSubmit} />}
+        {roomId && name && <PlanningPokerRoom {...this.state} />}
+      </div>
+    );
   }
 }
 
