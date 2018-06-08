@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import uuid from "uuid/v4";
 import EventsService from "./events-service";
 import Estimations from "./Estimations";
 import Participants from "./Participants";
@@ -9,7 +10,7 @@ import Name from "./Name";
 
 class App extends Component {
   state = {
-    roomId: "39944e90-c9f5-427e-a616-98c3f91b08bb",
+    roomId: "2345",
     participants: [],
     estimations: [],
     hasStarted: false
@@ -21,6 +22,10 @@ class App extends Component {
 
     this.eventsService.subscribeToEstimationsResultEvent(estimations => {
       this.setState({ estimations, hasStarted: false });
+    });
+
+    this.eventsService.subscribeToConnectEvent(({ participantId }) => {
+      this.setState({ participantId });
     });
 
     this.eventsService.subscribeToEstimationStartedEvent(() => {
@@ -58,19 +63,24 @@ class App extends Component {
     });
   }
 
+  isAdmin = () => {
+    const { participants, participantId } = this.state;
+    return participants.find(participant => participant.id === participantId && participant.isAdmin);
+  };
+
   render() {
     const { participants, estimations, hasStarted } = this.state;
     return (
       <div className="container">
         <div className="row mt-3">
-          <div className="col-12 col-md-3">
+          <div className="col-12 col-sm-3">
             <Name handleChange={this.eventsService.publishChangeNameEvent} />
             <Participants participants={participants} />
           </div>
-          <div className="col-12 col-md-9">
+          <div className="col-12 col-sm-9">
             <StartEstimation
               handleStartEstimation={this.eventsService.publishStartEstimationEvent}
-              showButton={!hasStarted}
+              showButton={this.isAdmin() && !hasStarted}
             />
             <Cards showCards={hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
             <Estimations

@@ -29,6 +29,10 @@ class EventsService {
     this.socket.on("NAME_CHANGED", data => callback(data));
   };
 
+  subscribeToConnectEvent = callback => {
+    this.socket.on("ON_CONNECT", data => callback(data));
+  };
+
   publishStartEstimationEvent = () => {
     this.socket.emit("START_ESTIMATION");
   };
