@@ -6,11 +6,11 @@ import Estimations from "./Estimations";
 import Participants from "./Participants";
 import Cards from "./Cards";
 import StartEstimation from "./StartEstimation";
-import Name from "./Name";
 
-class App extends Component {
+class PlanningPokerRoom extends Component {
   state = {
-    roomId: "2345",
+    roomId: this.props.roomId,
+    name: this.props.name,
     participants: [],
     estimations: [],
     hasStarted: false
@@ -18,7 +18,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.eventsService = new EventsService(this.state.roomId);
+    this.eventsService = new EventsService(this.state.roomId, this.state.name);
 
     this.eventsService.subscribeToEstimationsResultEvent(estimations => {
       this.setState({ estimations, hasStarted: false });
@@ -50,17 +50,6 @@ class App extends Component {
         ]
       });
     });
-
-    this.eventsService.subscribeToNameChangedEvent(participant => {
-      const index = this.state.participants.findIndex(p => p.id === participant.id);
-      this.setState({
-        participants: [
-          ...this.state.participants.slice(0, index),
-          Object.assign({}, this.state.participants[index], { name: participant.name }),
-          ...this.state.participants.slice(index + 1)
-        ]
-      });
-    });
   }
 
   isAdmin = () => {
@@ -74,7 +63,6 @@ class App extends Component {
       <div className="container">
         <div className="row mt-3">
           <div className="col-12 col-sm-3">
-            <Name handleChange={this.eventsService.publishChangeNameEvent} />
             <Participants participants={participants} />
           </div>
           <div className="col-12 col-sm-9">
@@ -92,6 +80,22 @@ class App extends Component {
         </div>
       </div>
     );
+  }
+}
+
+class Landing extends Component {
+  state = {};
+}
+
+class App extends Component {
+  state = {
+    roomId: "2345",
+    name: "John"
+  };
+
+  render() {
+    const { roomId, name } = this.state;
+    return roomId && name && <PlanningPokerRoom {...this.state} />;
   }
 }
 

@@ -1,10 +1,11 @@
 import openSocket from "socket.io-client";
 
 class EventsService {
-  constructor(roomId) {
+  constructor(roomId, participantName) {
     this.socket = openSocket("http://localhost:3000", {
       query: {
-        roomId
+        roomId,
+        name
       }
     });
   }
@@ -25,10 +26,6 @@ class EventsService {
     this.socket.on("CARD_PLAYED", data => callback(data));
   };
 
-  subscribeToNameChangedEvent = callback => {
-    this.socket.on("NAME_CHANGED", data => callback(data));
-  };
-
   subscribeToConnectEvent = callback => {
     this.socket.on("ON_CONNECT", data => callback(data));
   };
@@ -39,10 +36,6 @@ class EventsService {
 
   publishPlayCardEvent = value => {
     this.socket.emit("PLAY_CARD", { value });
-  };
-
-  publishChangeNameEvent = name => {
-    this.socket.emit("CHANGE_NAME", { name });
   };
 }
 
