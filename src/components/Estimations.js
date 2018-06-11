@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 class Estimations extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     if (!this.props.showResults) {
       return null;
