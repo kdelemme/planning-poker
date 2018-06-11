@@ -60,14 +60,14 @@ class PlanningPokerRoom extends Component {
     return (
       <div className="container">
         <div className="row mt-3">
-          <div className="col-12 col-sm-3">
+          <div className="col-12 col-md-4">
             <Participants participants={participants} />
             <StartEstimation
               handleStartEstimation={this.eventsService.publishStartEstimationEvent}
               showButton={this.isAdmin() && !hasStarted}
             />
           </div>
-          <div className="col-12 col-sm-9">
+          <div className="col-12 col-md-8">
             <Cards showCards={hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
             <Estimations
               showResults={!hasStarted && estimations.length > 0}
