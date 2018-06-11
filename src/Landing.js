@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Input from "./Input";
 
 class Landing extends Component {
-  state = {};
+  state = { name: this.props.name, roomId: this.props.roomId };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -19,8 +19,8 @@ class Landing extends Component {
         <div className="row mt-3">
           <div className="col-12 col-sm-3">
             <form>
-              <Input placeholder="Your name" handleChange={this.handleNameChange} />
-              <Input placeholder="Room ID" handleChange={this.handleRoomIdChange} />
+              <Input placeholder="Your name" value={name} handleChange={this.handleNameChange} />
+              <Input placeholder="Room ID" value={roomId} handleChange={this.handleRoomIdChange} disabled={roomId} />
               <button disabled={!name || !roomId} className="btn btn-primary" type="submit" onClick={this.handleSubmit}>
                 Join the planning poker room
               </button>

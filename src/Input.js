@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class Input extends Component {
-  state = { value: "" };
+  state = { value: this.props.value };
 
   handleChange = event => {
     this.setState({ value: event.target.value });
@@ -17,6 +17,7 @@ class Input extends Component {
           placeholder={this.props.placeholder}
           value={this.state.value}
           onChange={this.handleChange}
+          disabled={this.props.disabled}
         />
       </div>
     );
