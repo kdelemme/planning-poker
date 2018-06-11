@@ -17,11 +17,16 @@ class Landing extends Component {
     return (
       <div className="container">
         <div className="row mt-3">
-          <div className="col-12 col-sm-3">
+          <div className="mx-auto col-12 col-sm-6 col-lg-4">
             <form>
               <Input placeholder="Your name" value={name} handleChange={this.handleNameChange} />
               <Input placeholder="Room ID" value={roomId} handleChange={this.handleRoomIdChange} disabled={roomId} />
-              <button disabled={!name || !roomId} className="btn btn-primary" type="submit" onClick={this.handleSubmit}>
+              <button
+                disabled={!name || !roomId}
+                className="btn btn-primary col-12"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
                 Join the planning poker room
               </button>
             </form>

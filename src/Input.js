@@ -13,7 +13,7 @@ class Input extends Component {
       <div className="form-group">
         <input
           type="text"
-          class="form-control"
+          className="form-control"
           placeholder={this.props.placeholder}
           value={this.state.value}
           onChange={this.handleChange}
