@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import EventsService from "./events-service";
+import EventsService from "../events-service";
 import Estimations from "./Estimations";
 import Participants from "./Participants";
 import Cards from "./Cards";
