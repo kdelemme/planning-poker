@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Landing from "./Landing";
 import PlanningPokerRoom from "./PlanningPokerRoom";
-import { addUrlProps } from "react-url-query";
+import { configureUrlQuery, addUrlProps, replaceInUrlQuery } from "react-url-query";
 
-function mapUrlToProps(url, props) {
-  return {
-    roomId: url.roomId,
-    name: url.name
-  };
-}
+import history from "./history";
+
+const mapUrlToProps = (url, props) => ({ roomId: url.roomId });
+const mapUrlChangeHandlersToProps = props => ({ onChangeRoomId: value => replaceInUrlQuery("roomId", value) });
 
 class App extends Component {
-  state = { roomId: this.props.roomId, name: this.props.name };
+  state = { roomId: this.props.roomId };
 
-  handleSubmit = ({ name, roomId }) => this.setState({ name, roomId });
+  handleSubmit = ({ name, roomId }) => {
+    this.setState({ name, roomId });
+    this.props.onChangeRoomId(roomId);
+  };
 
   render() {
     const { roomId, name } = this.state;
@@ -27,6 +28,8 @@ class App extends Component {
   }
 }
 
-const AppRouted = addUrlProps({ mapUrlToProps })(App);
+const AppRouted = addUrlProps({ mapUrlToProps, mapUrlChangeHandlersToProps })(App);
+
+configureUrlQuery({ history });
 
 ReactDOM.render(<AppRouted />, document.getElementById("root"));

@@ -20,7 +20,12 @@ class Landing extends Component {
           <div className="mx-auto col-12 col-sm-6 col-lg-4">
             <form>
               <Input placeholder="Your name" value={name} handleChange={this.handleNameChange} />
-              <Input placeholder="Room ID" value={roomId} handleChange={this.handleRoomIdChange} disabled={roomId} />
+              <Input
+                placeholder="Room ID"
+                value={roomId}
+                handleChange={this.handleRoomIdChange}
+                disabled={this.props.roomId}
+              />
               <button
                 disabled={!name || !roomId}
                 className="btn btn-primary col-12"
