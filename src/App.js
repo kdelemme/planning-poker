@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Landing from "./Landing";
 import PlanningPokerRoom from "./PlanningPokerRoom";
 
-class App extends Component {
+import { addUrlProps, replaceInUrlQuery } from "react-url-query";
+
+export class App extends Component {
   state = { roomId: this.props.roomId };
 
   handleSubmit = ({ name, roomId }) => {
@@ -21,4 +23,7 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapUrlToProps = (url, props) => ({ roomId: url.roomId });
+const mapUrlChangeHandlersToProps = props => ({ onChangeRoomId: value => replaceInUrlQuery("roomId", value) });
+
+export default addUrlProps({ mapUrlToProps, mapUrlChangeHandlersToProps })(App);
