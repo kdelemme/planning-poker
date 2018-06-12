@@ -4,6 +4,7 @@ import Estimations from "./Estimations";
 import Participants from "./Participants";
 import Cards from "./Cards";
 import StartEstimation from "./StartEstimation";
+import CopyRoomLink from "./CopyLinkRoom";
 
 class PlanningPokerRoom extends Component {
   state = {
@@ -69,7 +70,9 @@ class PlanningPokerRoom extends Component {
             />
           </div>
           <div className="col-md-8">
-            <h4 class="mb-3">Planning Poker</h4>
+            <h4 class="mb-3">
+              Planning Poker <CopyRoomLink />
+            </h4>
             <Cards show={estimationInProgress} handlePlayCard={this.eventsService.publishPlayCardEvent} />
             <Estimations
               show={!estimationInProgress && estimations.length > 0}

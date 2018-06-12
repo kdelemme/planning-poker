@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.1.1",
+    "copy-to-clipboard": "^3.0.8",
     "history": "^4.7.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
