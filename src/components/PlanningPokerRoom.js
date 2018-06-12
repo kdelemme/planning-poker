@@ -59,16 +59,17 @@ class PlanningPokerRoom extends Component {
     const { participants, estimations, estimationInProgress } = this.state;
     return (
       <div className="container">
-        <div className="row mt-3">
-          <div className="col-12 col-md-4">
+        <div className="row py-4">
+          <div className="col-md-4 mb-3">
+            <Participants participants={participants} />
             <StartEstimation
               handleStartEstimation={this.eventsService.publishStartEstimationEvent}
               show={this.isAdmin()}
               disabled={estimationInProgress}
             />
-            <Participants participants={participants} />
           </div>
-          <div className="col-12 col-md-8">
+          <div className="col-md-8">
+            <h4 class="mb-3">Planning Poker</h4>
             <Cards show={estimationInProgress} handlePlayCard={this.eventsService.publishPlayCardEvent} />
             <Estimations
               show={!estimationInProgress && estimations.length > 0}

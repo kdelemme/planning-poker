@@ -7,8 +7,8 @@ class Estimations extends Component {
     }
 
     return (
-      <div className="col-12">
-        <ul className="list list-unstyled">
+      <div className="row">
+        <ul className="col-12 list list-unstyled">
           {this.props.estimations.map(estimation => {
             let p = this.props.participants.find(participant => participant.id === estimation.participantId);
             return (
