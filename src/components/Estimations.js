@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Estimations extends Component {
   render() {
-    if (!this.props.showResults) {
+    if (!this.props.show) {
       return null;
     }
 

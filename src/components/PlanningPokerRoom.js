@@ -11,7 +11,7 @@ class PlanningPokerRoom extends Component {
     name: this.props.name,
     participants: [],
     estimations: [],
-    hasStarted: false
+    estimationInProgress: false
   };
 
   constructor(props) {
@@ -19,7 +19,7 @@ class PlanningPokerRoom extends Component {
     this.eventsService = new EventsService(this.state.roomId, this.state.name);
 
     this.eventsService.subscribeToEstimationsResultEvent(estimations => {
-      this.setState({ estimations, hasStarted: false });
+      this.setState({ estimations, estimationInProgress: false });
     });
 
     this.eventsService.subscribeToConnectEvent(({ participantId }) => {
@@ -30,7 +30,7 @@ class PlanningPokerRoom extends Component {
       this.setState({
         participants: this.state.participants.map(p => Object.assign({}, p, { hasVoted: false })),
         estimations: [],
-        hasStarted: true
+        estimationInProgress: true
       });
     });
 
@@ -56,7 +56,7 @@ class PlanningPokerRoom extends Component {
   };
 
   render() {
-    const { participants, estimations, hasStarted } = this.state;
+    const { participants, estimations, estimationInProgress } = this.state;
     return (
       <div className="container">
         <div className="row mt-3">
@@ -64,14 +64,14 @@ class PlanningPokerRoom extends Component {
             <StartEstimation
               handleStartEstimation={this.eventsService.publishStartEstimationEvent}
               show={this.isAdmin()}
-              disabled={hasStarted}
+              disabled={estimationInProgress}
             />
             <Participants participants={participants} />
           </div>
           <div className="col-12 col-md-8">
-            <Cards showCards={hasStarted} handlePlayCard={this.eventsService.publishPlayCardEvent} />
+            <Cards show={estimationInProgress} handlePlayCard={this.eventsService.publishPlayCardEvent} />
             <Estimations
-              showResults={!hasStarted && estimations.length > 0}
+              show={!estimationInProgress && estimations.length > 0}
               participants={participants}
               estimations={estimations}
             />

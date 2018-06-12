@@ -9,7 +9,7 @@ class Cards extends Component {
   };
 
   render() {
-    if (!this.props.showCards) {
+    if (!this.props.show) {
       return null;
     }
 
