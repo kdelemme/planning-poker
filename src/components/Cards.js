@@ -20,7 +20,7 @@ class Cards extends Component {
       <div className="row">
         <ul className="col-12 list-inline">
           {cardValues.map((cardValue, index) => (
-            <li className="list-inline-item">
+            <li key={index} className="list-inline-item">
               <input
                 type="button"
                 className={`btn ${this.state.selectedCard == cardValue ? "btn-danger" : "btn-primary"}`}
