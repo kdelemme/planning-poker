@@ -22,10 +22,6 @@ class EventsService {
     this.socket.on("ESTIMATION_STARTED", () => callback());
   };
 
-  subscribeToCardPlayedEvent = callback => {
-    this.socket.on("CARD_PLAYED", data => callback(data));
-  };
-
   subscribeToConnectEvent = callback => {
     this.socket.on("ON_CONNECT", data => callback(data));
   };

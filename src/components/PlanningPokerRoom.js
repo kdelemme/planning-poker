@@ -37,17 +37,6 @@ class PlanningPokerRoom extends Component {
     this.eventsService.subscribeToParticipantListEvent(participants => {
       this.setState({ participants });
     });
-
-    this.eventsService.subscribeToCardPlayedEvent(({ participantId }) => {
-      const index = this.state.participants.findIndex(p => p.id === participantId);
-      this.setState({
-        participants: [
-          ...this.state.participants.slice(0, index),
-          Object.assign({}, this.state.participants[index], { hasVoted: true }),
-          ...this.state.participants.slice(index + 1)
-        ]
-      });
-    });
   }
 
   isAdmin = () => {
