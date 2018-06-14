@@ -11,11 +11,11 @@ class Participants extends Component {
         </h4>
         <ul className="list-group mb-3">
           {participants.map(p => (
-            <li className="list-group-item d-flex justify-content-between lh-condensed">
+            <li key={p.id} className="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 className="my-0">{p.name}</h6>
                 <small className={p.hasVoted && estimationInProgress ? "text-success" : "text-muted"}>
-                  {p.hasVoted && estimationInProgress ? "Vote received" : "Awaiting vote"}
+                  {estimationInProgress ? (p.hasVoted ? "Vote received" : "Awaiting vote") : "Awaiting new round"}
                 </small>
               </div>
             </li>
