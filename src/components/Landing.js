@@ -19,7 +19,7 @@ class Landing extends Component {
         <div className="row mt-3">
           <div className="mx-auto col-12 col-sm-6 col-lg-4">
             <form>
-              <Input placeholder="Jon" label="Your name" value={name} handleChange={this.handleNameChange} />
+              <Input placeholder="Jone" label="Your name" value={name} handleChange={this.handleNameChange} />
               <Input
                 label="Room"
                 placeholder="transferwise-planning"

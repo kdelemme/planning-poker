@@ -6,8 +6,6 @@ class Estimations extends Component {
       return null;
     }
 
-    console.log(this.props.estimations);
-    console.log(this.props.participants);
     const { estimations, participants } = this.props;
 
     return (
@@ -18,7 +16,7 @@ class Estimations extends Component {
             .map(estimation => {
               let p = participants.find(participant => participant.id === estimation.participantId);
               return (
-                <li>
+                <li key={p.id}>
                   <span className="text-success">{p.name}</span> played the card{" "}
                   <span className="text-success">{estimation.estimation}</span>
                 </li>
