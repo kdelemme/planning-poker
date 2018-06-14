@@ -29,7 +29,6 @@ class PlanningPokerRoom extends Component {
 
     this.eventsService.subscribeToEstimationStartedEvent(() => {
       this.setState({
-        participants: this.state.participants.map(p => Object.assign({}, p, { hasVoted: false })),
         estimations: [],
         estimationInProgress: true
       });
