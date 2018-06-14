@@ -50,7 +50,7 @@ class PlanningPokerRoom extends Component {
       <div className="container">
         <div className="row py-4">
           <div className="col-md-4 mb-3">
-            <Participants participants={participants} />
+            <Participants participants={participants} estimationInProgress={estimationInProgress} />
             <StartEstimation
               handleStartEstimation={this.eventsService.publishStartEstimationEvent}
               show={this.isAdmin()}

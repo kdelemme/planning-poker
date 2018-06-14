@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class Participants extends Component {
   render() {
+    const { participants, estimationInProgress } = this.props;
     return (
       <div>
         <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -9,12 +10,12 @@ class Participants extends Component {
           <span className="badge badge-secondary badge-pill">{this.props.participants.length}</span>
         </h4>
         <ul className="list-group mb-3">
-          {this.props.participants.map(p => (
+          {participants.map(p => (
             <li className="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 className="my-0">{p.name}</h6>
-                <small className={p.hasVoted ? "text-success" : "text-muted"}>
-                  {p.hasVoted ? "Vote received" : "Awaiting vote"}
+                <small className={p.hasVoted && estimationInProgress ? "text-success" : "text-muted"}>
+                  {p.hasVoted && estimationInProgress ? "Vote received" : "Awaiting vote"}
                 </small>
               </div>
             </li>
