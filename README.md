@@ -2,7 +2,7 @@
 
 A distributed planning poker game.
 
-![Planning-Poker](https://gfycat.com/gifs/detail/FearfulSeveralBobolink)
+[Planning-Poker](https://gfycat.com/ifr/FearfulSeveralBobolink)
 
 ## Installing
 
