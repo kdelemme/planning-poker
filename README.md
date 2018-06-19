@@ -12,7 +12,9 @@ You can run the test with: `npm test`
 
 ## Running in development mode
 
-Simply run: `npm start`
+Make sure to run the backend first, [PlanningPokerService](https://github.com/kdelemme/planning-poker-service).
+
+Then, run: `npm start`
 
 ## License
 
