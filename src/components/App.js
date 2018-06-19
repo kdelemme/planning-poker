@@ -5,25 +5,25 @@ import PlanningPokerRoom from "./PlanningPokerRoom";
 import { addUrlProps, replaceInUrlQuery } from "react-url-query";
 
 export class App extends Component {
-  state = { roomId: this.props.roomId };
+  state = { room: this.props.room };
 
-  handleSubmit = ({ name, roomId }) => {
-    this.setState({ name, roomId });
-    this.props.onChangeRoomId(roomId);
+  handleSubmit = ({ name, room }) => {
+    this.setState({ name, room });
+    this.props.onChangeRoom(room);
   };
 
   render() {
-    const { roomId, name } = this.state;
+    const { room, name } = this.state;
     return (
       <div>
-        {(!roomId || !name) && <Landing {...this.state} handleSubmit={this.handleSubmit} />}
-        {roomId && name && <PlanningPokerRoom {...this.state} />}
+        {(!room || !name) && <Landing {...this.state} handleSubmit={this.handleSubmit} />}
+        {room && name && <PlanningPokerRoom {...this.state} />}
       </div>
     );
   }
 }
 
-const mapUrlToProps = (url, props) => ({ roomId: url.roomId });
-const mapUrlChangeHandlersToProps = props => ({ onChangeRoomId: value => replaceInUrlQuery("roomId", value) });
+const mapUrlToProps = (url, props) => ({ room: url.room });
+const mapUrlChangeHandlersToProps = props => ({ onChangeRoom: value => replaceInUrlQuery("room", value) });
 
 export default addUrlProps({ mapUrlToProps, mapUrlChangeHandlersToProps })(App);

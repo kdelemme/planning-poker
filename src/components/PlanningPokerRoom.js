@@ -8,7 +8,7 @@ import CopyRoomLink from "./CopyLinkRoom";
 
 class PlanningPokerRoom extends Component {
   state = {
-    roomId: this.props.roomId,
+    room: this.props.room,
     name: this.props.name,
     participants: [],
     estimations: [],
@@ -17,7 +17,7 @@ class PlanningPokerRoom extends Component {
 
   constructor(props) {
     super(props);
-    this.eventsService = new EventsService(this.state.roomId, this.state.name);
+    this.eventsService = new EventsService(this.state.room, this.state.name);
 
     this.eventsService.subscribeToEstimationsResultEvent(estimations => {
       this.setState({ estimations, estimationInProgress: false });

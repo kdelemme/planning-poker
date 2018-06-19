@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Input from "./Input";
 
 class Landing extends Component {
-  state = { name: this.props.name, roomId: this.props.roomId };
+  state = { name: this.props.name, room: this.props.room };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -10,10 +10,10 @@ class Landing extends Component {
   };
 
   handleNameChange = value => this.setState({ name: value });
-  handleRoomIdChange = value => this.setState({ roomId: value });
+  handleRoomChange = value => this.setState({ room: value });
 
   render() {
-    const { name, roomId } = this.state;
+    const { name, room } = this.state;
     return (
       <div className="container">
         <div className="row mt-3">
@@ -23,12 +23,12 @@ class Landing extends Component {
               <Input
                 label="Room"
                 placeholder="transferwise-planning"
-                value={roomId}
-                handleChange={this.handleRoomIdChange}
-                disabled={this.props.roomId}
+                value={room}
+                handleChange={this.handleRoomChange}
+                disabled={this.props.room}
               />
               <button
-                disabled={!name || !roomId}
+                disabled={!name || !room}
                 className="btn btn-primary col-12"
                 type="submit"
                 onClick={this.handleSubmit}
