@@ -2,6 +2,8 @@
 
 A distributed planning poker game.
 
+![Planning-Poker](https://gfycat.com/gifs/detail/FearfulSeveralBobolink)
+
 ## Installing
 
 Install the dependencies: `npm install`
