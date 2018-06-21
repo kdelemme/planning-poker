@@ -10,13 +10,13 @@ describe("Participants Component", () => {
     expect(wrapper.find(".badge").text()).toBe("3");
   });
 
-  it("should mention 'Vote received' when estimation in progress and participant has voted", () => {
+  it("should mention 'Vote received' when vote in progress and participant has voted", () => {
     const participants = [
       { id: 100, name: "John", hasVoted: true },
       { id: 300, name: "Bob" },
       { id: 200, name: "Alice" }
     ];
-    const wrapper = mount(<Participants participants={participants} estimationInProgress={true} />);
+    const wrapper = mount(<Participants participants={participants} voteInProgress={true} />);
 
     expect(
       wrapper
@@ -26,13 +26,13 @@ describe("Participants Component", () => {
     ).toBe("Vote received");
   });
 
-  it("should mention 'Awaiting new round' when estimation is not in progress", () => {
+  it("should mention 'Awaiting new round' when vote is not in progress", () => {
     const participants = [
       { id: 100, name: "John", hasVoted: true },
       { id: 300, name: "Bob" },
       { id: 200, name: "Alice" }
     ];
-    const wrapper = mount(<Participants participants={participants} estimationInProgress={false} />);
+    const wrapper = mount(<Participants participants={participants} voteInProgress={false} />);
 
     expect(
       wrapper
@@ -42,13 +42,13 @@ describe("Participants Component", () => {
     ).toBe("Awaiting new round");
   });
 
-  it("should mention 'Awaiting vote' when estimation is in progress but participant has not voted", () => {
+  it("should mention 'Awaiting vote' when vote is in progress but participant has not voted", () => {
     const participants = [
       { id: 100, name: "John", hasVoted: false },
       { id: 300, name: "Bob" },
       { id: 200, name: "Alice" }
     ];
-    const wrapper = mount(<Participants participants={participants} estimationInProgress={true} />);
+    const wrapper = mount(<Participants participants={participants} voteInProgress={true} />);
 
     expect(
       wrapper
