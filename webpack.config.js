@@ -16,6 +16,11 @@ module.exports = {
   module: {
     rules: [{ test: /\.js$/, exclude: /node_modules/, use: { loader: "babel-loader" } }]
   },
+  externals: {
+    Config: JSON.stringify(
+      process.env.NODE_ENV === "production" ? require("./config.prod.json") : require("./config.dev.json")
+    )
+  },
   devtool: "eval-source-map",
   plugins: [HtmlWebpackPluginConfig]
 };

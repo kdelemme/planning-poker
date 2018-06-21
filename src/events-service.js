@@ -1,8 +1,8 @@
 import openSocket from "socket.io-client";
-
+import Config from "Config";
 class EventsService {
   constructor(room, name) {
-    this.socket = openSocket("http://localhost:3000", {
+    this.socket = openSocket(Config.serverUrl, {
       query: {
         room,
         name
