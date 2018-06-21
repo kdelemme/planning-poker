@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Participants extends Component {
   render() {
-    const { participants, estimationInProgress } = this.props;
+    const { participants, voteInProgress } = this.props;
     return (
       <div>
         <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -14,8 +14,8 @@ class Participants extends Component {
             <li key={p.id} className="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 className="my-0">{p.name}</h6>
-                <small className={p.hasVoted && estimationInProgress ? "text-success" : "text-muted"}>
-                  {estimationInProgress ? (p.hasVoted ? "Vote received" : "Awaiting vote") : "Awaiting new round"}
+                <small className={p.hasVoted && voteInProgress ? "text-success" : "text-muted"}>
+                  {voteInProgress ? (p.hasVoted ? "Vote received" : "Awaiting vote") : "Awaiting new round"}
                 </small>
               </div>
             </li>

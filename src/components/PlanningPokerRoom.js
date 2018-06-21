@@ -11,30 +11,28 @@ class PlanningPokerRoom extends Component {
     room: this.props.room,
     name: this.props.name,
     participants: [],
-    estimations: [],
-    estimationInProgress: false
+    voteInProgress: false
   };
 
   constructor(props) {
     super(props);
     this.eventsService = new EventsService(this.state.room, this.state.name);
 
-    this.eventsService.subscribeToEstimationsResultEvent(estimations => {
-      this.setState({ estimations, estimationInProgress: false });
+    this.eventsService.subscribeToParticipantsWithVoteEvent(participants => {
+      this.setState({ participants, voteInProgress: false });
     });
 
     this.eventsService.subscribeToConnectEvent(({ participantId }) => {
       this.setState({ participantId });
     });
 
-    this.eventsService.subscribeToEstimationStartedEvent(() => {
+    this.eventsService.subscribeToVoteStartedEvent(() => {
       this.setState({
-        estimations: [],
-        estimationInProgress: true
+        voteInProgress: true
       });
     });
 
-    this.eventsService.subscribeToParticipantListEvent(participants => {
+    this.eventsService.subscribeToParticipantsEvent(participants => {
       this.setState({ participants });
     });
   }
@@ -45,28 +43,24 @@ class PlanningPokerRoom extends Component {
   };
 
   render() {
-    const { participants, estimations, estimationInProgress } = this.state;
+    const { participants, voteInProgress } = this.state;
     return (
       <div className="container">
         <div className="row py-4">
           <div className="col-md-4 mb-3">
-            <Participants participants={participants} estimationInProgress={estimationInProgress} />
+            <Participants participants={participants} voteInProgress={voteInProgress} />
             <StartEstimation
-              handleStartEstimation={this.eventsService.publishStartEstimationEvent}
+              handleStartEstimation={this.eventsService.publishStartVoteEvent}
               show={this.isAdmin()}
-              disabled={estimationInProgress}
+              disabled={voteInProgress}
             />
           </div>
           <div className="col-md-8">
             <h4 class="mb-3">
               Planning Poker <CopyRoomLink />
             </h4>
-            <Cards show={estimationInProgress} handlePlayCard={this.eventsService.publishPlayCardEvent} />
-            <Estimations
-              show={!estimationInProgress && estimations.length > 0}
-              participants={participants}
-              estimations={estimations}
-            />
+            <Cards show={voteInProgress} handlePlayCard={this.eventsService.publishVoteCardEvent} />
+            <Estimations show={!voteInProgress && participants.every(p => p.hasVoted)} participants={participants} />
           </div>
         </div>
       </div>

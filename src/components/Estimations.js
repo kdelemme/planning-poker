@@ -6,22 +6,19 @@ class Estimations extends Component {
       return null;
     }
 
-    const { estimations, participants } = this.props;
+    const { participants } = this.props;
 
     return (
       <div className="row">
         <ul className="col-12 list list-unstyled">
-          {estimations
-            .filter(estimation => participants.find(participant => participant.id === estimation.participantId))
-            .map(estimation => {
-              let p = participants.find(participant => participant.id === estimation.participantId);
-              return (
-                <li key={p.id}>
-                  <span className="text-success">{p.name}</span> played the card{" "}
-                  <span className="text-success">{estimation.estimation}</span>
-                </li>
-              );
-            })}
+          {participants.map(participant => {
+            return (
+              <li key={participant.id}>
+                <span className="text-success">{participant.name}</span> played the card{" "}
+                <span className="text-success">{participant.card}</span>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );

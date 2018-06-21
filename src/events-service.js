@@ -10,28 +10,28 @@ class EventsService {
     });
   }
 
-  subscribeToParticipantListEvent = callback => {
-    this.socket.on("PARTICIPANT_LIST", data => callback(data));
+  subscribeToParticipantsEvent = callback => {
+    this.socket.on("PARTICIPANTS", data => callback(data));
   };
 
-  subscribeToEstimationsResultEvent = callback => {
-    this.socket.on("ESTIMATIONS_RESULT", data => callback(data));
+  subscribeToParticipantsWithVoteEvent = callback => {
+    this.socket.on("PARTICIPANTS_WITH_VOTE", data => callback(data));
   };
 
-  subscribeToEstimationStartedEvent = callback => {
-    this.socket.on("ESTIMATION_STARTED", () => callback());
+  subscribeToVoteStartedEvent = callback => {
+    this.socket.on("VOTE_STARTED", () => callback());
   };
 
   subscribeToConnectEvent = callback => {
     this.socket.on("ON_CONNECT", data => callback(data));
   };
 
-  publishStartEstimationEvent = () => {
-    this.socket.emit("START_ESTIMATION");
+  publishStartVoteEvent = () => {
+    this.socket.emit("START_VOTE");
   };
 
-  publishPlayCardEvent = value => {
-    this.socket.emit("PLAY_CARD", { value });
+  publishVoteCardEvent = value => {
+    this.socket.emit("VOTE_CARD", { value });
   };
 }
 
