@@ -2,7 +2,7 @@
 
 A distributed planning poker game.
 
-Live demo available ![here](http://s3-eu-west-1.amazonaws.com/demo-kdelemme/planning-poker/index.html)
+Live demo available [here](http://s3-eu-west-1.amazonaws.com/demo-kdelemme/planning-poker/index.html)
 
 ## Installing
 
