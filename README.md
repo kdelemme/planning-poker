@@ -2,7 +2,7 @@
 
 A distributed planning poker game.
 
-[Planning-Poker](https://gfycat.com/ifr/FearfulSeveralBobolink)
+Live demo available ![here](http://s3-eu-west-1.amazonaws.com/demo-kdelemme/planning-poker/index.html)
 
 ## Installing
 
