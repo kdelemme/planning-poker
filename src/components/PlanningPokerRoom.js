@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import EventsService from "../events-service";
-import Estimations from "./Estimations";
 import Participants from "./Participants";
 import Cards from "./Cards";
 import StartEstimation from "./StartEstimation";
@@ -43,7 +42,7 @@ class PlanningPokerRoom extends Component {
   };
 
   render() {
-    const { participants, voteInProgress } = this.state;
+    const { room, participants, voteInProgress } = this.state;
     return (
       <div className="container">
         <div className="row py-4">
@@ -63,13 +62,6 @@ class PlanningPokerRoom extends Component {
               disabled={voteInProgress}
             />
           </div>
-          {/* <div className="col-md-8">
-            <h4 class="mb-3">
-              Planning Poker <CopyRoomLink />
-            </h4>
-            <Cards show={voteInProgress} handlePlayCard={this.eventsService.publishVoteCardEvent} />
-            <Estimations show={!voteInProgress && participants.every(p => p.hasVoted)} participants={participants} />
-          </div> */}
         </div>
       </div>
     );

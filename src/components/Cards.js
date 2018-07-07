@@ -20,7 +20,7 @@ class Cards extends Component {
             <li key={index} className="list-inline-item">
               <input
                 type="button"
-                className={`btn ${this.state.selectedCard == cardValue ? "btn-danger" : "btn-primary"}`}
+                className={`btn mb-2 ${this.state.selectedCard == cardValue ? "btn-danger" : "btn-primary"}`}
                 onClick={boundedSelectCards[index]}
                 value={cardValue}
                 disabled={!show}

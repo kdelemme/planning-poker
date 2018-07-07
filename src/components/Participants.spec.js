@@ -3,13 +3,6 @@ import Participants from "./Participants";
 import { mount } from "enzyme";
 
 describe("Participants Component", () => {
-  it("should show number of participants", () => {
-    const participants = [{ id: 100, name: "John" }, { id: 300, name: "Bob" }, { id: 200, name: "Alice" }];
-    const wrapper = mount(<Participants participants={participants} />);
-
-    expect(wrapper.find(".badge").text()).toBe("3");
-  });
-
   it("should mention 'Vote received' when vote in progress and participant has voted", () => {
     const participants = [
       { id: 100, name: "John", hasVoted: true },
