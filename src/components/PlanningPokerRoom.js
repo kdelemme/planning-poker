@@ -47,7 +47,15 @@ class PlanningPokerRoom extends Component {
     return (
       <div className="container">
         <div className="row py-4">
-          <div className="col-md-4 mb-3">
+          <div className="col-md-8 offset-md-2">
+            <h4 class="mb-3">
+              Planning Poker <CopyRoomLink />
+            </h4>
+            <Cards show={voteInProgress} handlePlayCard={this.eventsService.publishVoteCardEvent} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-8 offset-md-2 mb-3">
             <Participants participants={participants} voteInProgress={voteInProgress} />
             <StartEstimation
               handleStartEstimation={this.eventsService.publishStartVoteEvent}
@@ -55,13 +63,13 @@ class PlanningPokerRoom extends Component {
               disabled={voteInProgress}
             />
           </div>
-          <div className="col-md-8">
+          {/* <div className="col-md-8">
             <h4 class="mb-3">
               Planning Poker <CopyRoomLink />
             </h4>
             <Cards show={voteInProgress} handlePlayCard={this.eventsService.publishVoteCardEvent} />
             <Estimations show={!voteInProgress && participants.every(p => p.hasVoted)} participants={participants} />
-          </div>
+          </div> */}
         </div>
       </div>
     );
