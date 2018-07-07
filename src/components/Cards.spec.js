@@ -3,9 +3,20 @@ import Cards from "./Cards";
 import { mount } from "enzyme";
 
 describe("Cards Component", () => {
-  it("shows the deck of cards if show is true", () => {
+  it("should enable the deck of cards if show is true", () => {
     const wrapper = mount(<Cards show={true} />);
     expect(wrapper.find("input.btn")).toHaveLength(8);
+    wrapper.find("input.btn").forEach(btn => {
+      expect(btn.prop("disabled")).toBe(false);
+    });
+  });
+
+  it("should disable the deck of cards if show is false", () => {
+    const wrapper = mount(<Cards show={false} />);
+    expect(wrapper.find("input.btn")).toHaveLength(8);
+    wrapper.find("input.btn").forEach(btn => {
+      expect(btn.prop("disabled")).toBe(true);
+    });
   });
 
   it("triggers the handlePlayed when clicking on a card", () => {
