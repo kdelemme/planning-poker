@@ -3,12 +3,9 @@ import React, { Component } from "react";
 class Participants extends Component {
   render() {
     const { participants, voteInProgress } = this.props;
+    const allVotesReceived = participants.every(p => p.hasVoted);
     return (
       <div>
-        <h4 className="d-flex justify-content-between align-items-center mb-3">
-          <span className="text-muted">Participants</span>
-          <span className="badge badge-secondary badge-pill">{this.props.participants.length}</span>
-        </h4>
         <ul className="list-group mb-3">
           {participants.map(p => (
             <li key={p.id} className="list-group-item d-flex justify-content-between lh-condensed">
@@ -18,6 +15,7 @@ class Participants extends Component {
                   {voteInProgress ? (p.hasVoted ? "Vote received" : "Awaiting vote") : "Awaiting new round"}
                 </small>
               </div>
+              <span className="badge badge-secondary">{allVotesReceived ? p.card : "?"}</span>
             </li>
           ))}
         </ul>
