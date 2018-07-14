@@ -9,7 +9,7 @@ class Cards extends Component {
   };
 
   render() {
-    const { show } = this.props;
+    const { disabled } = this.props;
     const cardValues = [1, 2, 3, 5, 8, 13, 21, "∞"];
     const boundedSelectCards = cardValues.map(card => this.selectCard.bind(this, card));
 
@@ -23,7 +23,7 @@ class Cards extends Component {
                 className={`btn mb-2 ${this.state.selectedCard == cardValue ? "btn-danger" : "btn-primary"}`}
                 onClick={boundedSelectCards[index]}
                 value={cardValue}
-                disabled={!show}
+                disabled={disabled}
               />
             </li>
           ))}
