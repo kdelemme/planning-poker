@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import copy from "copy-to-clipboard";
+import AnalyticsService from "../analytics-service";
 
 class CopyRoomLink extends Component {
   state = { clicked: false };
@@ -9,6 +10,7 @@ class CopyRoomLink extends Component {
     copy(window.location.href);
     this.setState({ clicked: true });
     setTimeout(() => this.setState({ clicked: false }), 2000);
+    AnalyticsService.track("Room Link Clicked", { link: window.location.href });
   };
 
   render() {
