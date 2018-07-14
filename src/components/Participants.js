@@ -15,6 +15,10 @@ class Participants extends Component {
     const allVotesReceived = participants.every(p => p.hasVoted);
     return (
       <div>
+        <h4 className="d-flex justify-content-between align-items-center mb-3">
+          <span className="text-muted">Participants</span>
+          <span className="badge badge-secondary">{participants.length}</span>
+        </h4>
         <ul className="list-group mb-3">
           {participants.map(p => (
             <li key={p.id} className="list-group-item d-flex justify-content-between lh-condensed">
