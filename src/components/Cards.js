@@ -8,8 +8,15 @@ class Cards extends Component {
     this.setState({ selectedCard: card });
   };
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.disabled === true && this.props.disabled === false) {
+      this.setState({ selectedCard: undefined });
+    }
+  }
+
   render() {
-    const { show } = this.props;
+    const { disabled } = this.props;
+    const { selectedCard } = this.state;
     const cardValues = [1, 2, 3, 5, 8, 13, 21, "∞"];
     const boundedSelectCards = cardValues.map(card => this.selectCard.bind(this, card));
 
@@ -20,10 +27,10 @@ class Cards extends Component {
             <li key={index} className="list-inline-item">
               <input
                 type="button"
-                className={`btn mb-2 ${this.state.selectedCard == cardValue ? "btn-danger" : "btn-primary"}`}
+                className={`btn mb-2 ${selectedCard == cardValue ? "btn-danger" : "btn-primary"}`}
                 onClick={boundedSelectCards[index]}
                 value={cardValue}
-                disabled={!show}
+                disabled={disabled}
               />
             </li>
           ))}

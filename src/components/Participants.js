@@ -15,7 +15,7 @@ class Participants extends Component {
                   {voteInProgress ? (p.hasVoted ? "Vote received" : "Awaiting vote") : "Awaiting new round"}
                 </small>
               </div>
-              <span className="badge badge-secondary">{allVotesReceived ? p.card : "?"}</span>
+              <span className="badge badge-secondary px-2">{allVotesReceived ? p.card : "?"}</span>
             </li>
           ))}
         </ul>

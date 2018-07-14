@@ -26,9 +26,7 @@ class PlanningPokerRoom extends Component {
     });
 
     this.eventsService.subscribeToVoteStartedEvent(() => {
-      this.setState({
-        voteInProgress: true
-      });
+      this.setState({ voteInProgress: true });
     });
 
     this.eventsService.subscribeToParticipantsEvent(participants => {
@@ -50,7 +48,7 @@ class PlanningPokerRoom extends Component {
             <h4 class="mb-3">
               Planning Poker <CopyRoomLink />
             </h4>
-            <Cards show={voteInProgress} handlePlayCard={this.eventsService.publishVoteCardEvent} />
+            <Cards disabled={!voteInProgress} handlePlayCard={this.eventsService.publishVoteCardEvent} />
           </div>
         </div>
         <div className="row">
