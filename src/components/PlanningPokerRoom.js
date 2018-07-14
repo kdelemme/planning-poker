@@ -44,21 +44,22 @@ class PlanningPokerRoom extends Component {
     return (
       <div className="container">
         <div className="row py-4">
-          <div className="col-md-8 offset-md-2">
-            <h4 class="mb-3">
-              Planning Poker <CopyRoomLink />
-            </h4>
-            <Cards disabled={!voteInProgress} handlePlayCard={this.eventsService.publishVoteCardEvent} />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-8 offset-md-2 mb-3">
+          <div className="col-md-4 mb-3 order-md-1 order-2">
             <Participants participants={participants} voteInProgress={voteInProgress} />
             <StartEstimation
               handleStartEstimation={this.eventsService.publishStartVoteEvent}
               show={this.isAdmin()}
               disabled={voteInProgress}
             />
+          </div>
+          <div className="col-md-8 col-lg-6 order-md-2 order-1">
+            <h4 className="d-flex justify-content-between align-items-center mb-3">
+              <span className="text-muted">Planning Poker</span>
+              <span>
+                <CopyRoomLink />
+              </span>
+            </h4>
+            <Cards disabled={!voteInProgress} handlePlayCard={this.eventsService.publishVoteCardEvent} />
           </div>
         </div>
       </div>
