@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Input from "./Input";
+import AnalyticsService from "../analytics-service";
 
 class Landing extends Component {
   state = { name: this.props.name, room: this.props.room };
 
   handleSubmit = event => {
     event.preventDefault();
+    AnalyticsService.track("Room Joined", this.state);
     this.props.handleSubmit(this.state);
   };
 

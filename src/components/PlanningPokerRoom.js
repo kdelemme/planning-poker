@@ -4,6 +4,7 @@ import Participants from "./Participants";
 import Cards from "./Cards";
 import StartEstimation from "./StartEstimation";
 import CopyRoomLink from "./CopyLinkRoom";
+import AnalyticsService from "../analytics-service";
 
 class PlanningPokerRoom extends Component {
   state = {
@@ -19,6 +20,10 @@ class PlanningPokerRoom extends Component {
 
     this.eventsService.subscribeToParticipantsWithVoteEvent(participants => {
       this.setState({ participants, voteInProgress: false });
+      AnalyticsService.track("Vote Ended", {
+        room: this.state.room,
+        totalParticipants: this.state.participants.length
+      });
     });
 
     this.eventsService.subscribeToConnectEvent(({ participantId }) => {
@@ -27,6 +32,10 @@ class PlanningPokerRoom extends Component {
 
     this.eventsService.subscribeToVoteStartedEvent(() => {
       this.setState({ voteInProgress: true });
+      AnalyticsService.track("Vote Started", {
+        room: this.state.room,
+        totalParticipants: this.state.participants.length
+      });
     });
 
     this.eventsService.subscribeToParticipantsEvent(participants => {
