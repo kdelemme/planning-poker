@@ -1,6 +1,6 @@
 class AnalyticsService {
   track(eventName, props = {}) {
-    if (mixpanel) {
+    if (window.mixpanel) {
       mixpanel.track(eventName, props);
     }
   }
