@@ -4,11 +4,11 @@
   "description": "A distributed planning poker app",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-serve --config ./webpack.config.js --mode development --port 8080",
+    "start": "NODE_ENV=dev webpack-serve --config ./webpack.config.js --mode development --port 8080",
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "NODE_ENV=development webpack --mode development",
-    "build:production": "NODE_ENV=production webpack --mode production",
+    "build": "NODE_ENV=dev webpack --env dev --mode development",
+    "build:production": "NODE_ENV=prod webpack --env prod --mode production",
     "prettier": "prettier src/**/*.js --config .prettierrc -l",
     "prettier:write": "prettier src/**/*.js --config .prettierrc --write",
     "flow": "flow status"
@@ -16,9 +16,11 @@
   "author": "Kevin Delemme",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^4.1.1",
+    "bootstrap": "^4.1.2",
     "copy-to-clipboard": "^3.0.8",
     "history": "^4.7.2",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-url-query": "^1.4.0",
@@ -35,6 +37,7 @@
     "babel-preset-react": "^6.24.1",
     "chalk": "^2.4.1",
     "css-loader": "^0.28.11",
+    "cypress": "^3.0.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
@@ -42,6 +45,7 @@
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
     "jest": "^23.0.0",
+    "mini-css-extract-plugin": "^0.4.1",
     "path": "^0.12.7",
     "prettier": "^1.12.1",
     "regenerator-runtime": "^0.11.1",
@@ -52,6 +56,7 @@
     "webpack-serve": "^1.0.2"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/testSetup.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/testSetup.js",
+    "testPathIgnorePatterns": ["/node_modules/", "cypress"]
   }
 }
