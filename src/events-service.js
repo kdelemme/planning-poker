@@ -31,7 +31,7 @@ class EventsService {
   };
 
   publishVoteCardEvent = value => {
-    this.socket.emit("VOTE_CARD", { value });
+    this.socket.emit("VOTE_CARD", { card: value });
   };
 }
 

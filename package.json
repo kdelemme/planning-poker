@@ -57,6 +57,9 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/testSetup.js",
-    "testPathIgnorePatterns": ["/node_modules/", "cypress"]
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "cypress"
+    ]
   }
 }
