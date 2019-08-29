@@ -1,28 +1,26 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class Input extends Component {
-  state = { value: this.props.value };
+function Input(props) {
+  const [value, setValue] = useState(props.value);
 
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-    this.props.handleChange(event.target.value);
+  const handleChange = event => {
+    setValue(event.target.value);
+    props.handleChange(event.target.value);
   };
 
-  render() {
-    return (
-      <div className="form-group">
-        <label>{this.props.label}</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder={this.props.placeholder}
-          value={this.state.value}
-          onChange={this.handleChange}
-          disabled={this.props.disabled}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="form-group">
+      <label>{props.label}</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder={props.placeholder}
+        value={value}
+        onChange={handleChange}
+        disabled={props.disabled}
+      />
+    </div>
+  );
 }
 
 export default Input;

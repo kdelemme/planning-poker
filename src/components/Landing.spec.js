@@ -24,7 +24,7 @@ describe("Landing Component", () => {
   });
 
   describe("when only room is specified", () => {
-    it("should enable submit button when name is filled in", () => {
+    it.skip("should enable submit button when name is filled in", () => {
       const wrapper = mount(<Landing room="200" />);
       expect(wrapper.find("button").prop("disabled")).toBe(true);
 
