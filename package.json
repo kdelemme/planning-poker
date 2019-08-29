@@ -31,7 +31,8 @@
     "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
-    "cypress": "^3.4.1"
+    "cypress": "^3.4.1",
+    "prettier": "^1.18.2"
   },
   "eslintConfig": {
     "extends": "react-app"

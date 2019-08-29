@@ -29,7 +29,6 @@ function Cards(props) {
       </ul>
     </div>
   );
-
 }
 
 export default Cards;

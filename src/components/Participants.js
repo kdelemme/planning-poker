@@ -1,14 +1,14 @@
 import React from "react";
 
 function Participants(props) {
-  const displayName = (participant) => {
+  const displayName = participant => {
     const { voteInProgress } = props;
     if (participant.hasVoted || !voteInProgress) {
       return `😀 ${participant.name}`;
     } else {
       return `🤔 ${participant.name}`;
     }
-  }
+  };
 
   const { participants, voteInProgress } = props;
   const allVotesReceived = participants.every(p => p.hasVoted);
@@ -34,7 +34,6 @@ function Participants(props) {
       </ul>
     </div>
   );
-
 }
 
 export default Participants;

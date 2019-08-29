@@ -25,12 +25,7 @@ function Landing(props) {
               handleChange={setRoom}
               disabled={props.room}
             />
-            <button
-              disabled={!name || !room}
-              className="btn btn-primary col-12"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button disabled={!name || !room} className="btn btn-primary col-12" type="submit" onClick={handleSubmit}>
               Join the planning poker room
             </button>
           </form>

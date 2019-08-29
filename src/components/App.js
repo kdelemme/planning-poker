@@ -26,4 +26,3 @@ const mapUrlToProps = (url, props) => ({ room: url.room });
 const mapUrlChangeHandlersToProps = props => ({ onChangeRoom: value => replaceInUrlQuery("room", value) });
 
 export default addUrlProps({ mapUrlToProps, mapUrlChangeHandlersToProps })(App);
-
