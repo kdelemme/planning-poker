@@ -1,7 +1,7 @@
 class AnalyticsService {
   track(eventName, props = {}) {
     if (window.mixpanel) {
-      mixpanel.track(eventName, props);
+      window.mixpanel.track(eventName, props);
     }
   }
 }

@@ -49,7 +49,7 @@ class PlanningPokerRoom extends Component {
   };
 
   render() {
-    const { room, participants, voteInProgress } = this.state;
+    const { participants, voteInProgress } = this.state;
     return (
       <div className="container">
         <div className="row py-4">

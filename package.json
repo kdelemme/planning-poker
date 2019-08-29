@@ -4,10 +4,10 @@
   "description": "A distributed planning poker app",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=dev webpack-serve --config ./webpack.config.js --mode development --port 8080",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "build": "NODE_ENV=dev webpack --env dev --mode development",
+    "start": "NODE_ENV=dev react-scripts start",
+    "build": "NODE_ENV=dev react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
     "build:production": "NODE_ENV=prod webpack --env prod --mode production",
     "prettier": "prettier src/**/*.js --config .prettierrc -l",
     "prettier:write": "prettier src/**/*.js --config .prettierrc --write",
@@ -16,50 +16,36 @@
   "author": "Kevin Delemme",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^4.1.2",
-    "copy-to-clipboard": "^3.0.8",
-    "history": "^4.7.2",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.3",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "bootstrap": "^4.3.1",
+    "copy-to-clipboard": "^3.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "history": "^4.9.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "^3.1.1",
+    "react-test-renderer": "^16.9.0",
     "react-url-query": "^1.4.0",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
-    "@webpack-contrib/config-loader": "^1.1.1",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^23.0.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
-    "chalk": "^2.4.1",
-    "css-loader": "^0.28.11",
-    "cypress": "^3.0.2",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.19.1",
-    "flow-bin": "^0.73.0",
-    "html-webpack-plugin": "^3.2.0",
-    "http-server": "^0.11.1",
-    "jest": "^23.0.0",
-    "mini-css-extract-plugin": "^0.4.1",
-    "path": "^0.12.7",
-    "prettier": "^1.12.1",
-    "regenerator-runtime": "^0.11.1",
-    "style-loader": "^0.21.0",
-    "wait-on": "^2.1.0",
-    "webpack": "^4.9.1",
-    "webpack-cli": "^2.1.4",
-    "webpack-serve": "^1.0.2"
+    "cypress": "^3.4.1"
   },
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/testSetup.js",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "cypress"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }

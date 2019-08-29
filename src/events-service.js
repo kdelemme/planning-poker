@@ -1,8 +1,9 @@
 import openSocket from "socket.io-client";
-import Config from "Config";
+
 class EventsService {
   constructor(room, name) {
-    this.socket = openSocket(Config.serverUrl, {
+    const serverUrl = process.env.NODE_ENV === "prod" ? "http://api.kdelemme.com:3000" : "http://localhost:3000";
+    this.socket = openSocket(serverUrl, {
       query: {
         room,
         name
